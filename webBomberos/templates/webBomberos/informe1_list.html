@@ -1,0 +1,93 @@
+{% extends 'webBomberos/base.html' %}
+{% load staticfiles %}
+{% block content %}
+	<h1 align="center">Informe de servicio 1</h1>
+        <div class="agregar-informe1" align="right">
+            <form action='agregar_informe1' method="POST" class="agregar-informe1">{% csrf_token %}
+                <button type="submit" class="btn btn-default"> <img src="{% static 'images/plus32.png' %}" alt="x"/></button>
+            </form>
+        </div>
+        <br>
+    	<div class="table-responsive">
+    		<table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th> Correlativo Llamado </th>
+                        <th> Correlativo CBV </th>
+                        <th> Clave Servicio </th>
+                        <th> Fecha </th>
+                        <th> Motivo </th>
+                        <th> Calle </th>
+                        <th> Numero de Calle </th>
+                        <th> Calle Proxima </th>
+                        <th> Sector </th>
+                        <th> Poblacion </th>
+                        <th> Ruta </th>
+                        <th> Kilometro de Ruta </th>
+                        <th> Bombero a Cargo </th>
+                        <th> Bombero Informe </th>
+                        <th> Codigo Bombero a Cargo </th>
+                        <th> codigo Informe </th>
+                        <th> Numero Departamento </th>
+                        <th> Numero Block </th>
+                        <th> Resumen </th>
+                        <th> Editar </th>
+                    </tr>
+                </thead>
+                        {% for inf in informe1 %}
+                        <tr>
+            			    <td> {% if inf.correlativollamado != None %}
+                                 {{inf.correlativollamado}} 
+                                 {% else %}
+                                 No Posee Numero
+                                 {% endif %}
+                            </td>
+            			    <td> {% if inf.correlativocbv != None %}
+                                 {{inf.correlativocbv}} 
+                                 {% else %}
+                                 No Posee Numero
+                                 {% endif %}
+                            </td>
+            			    <td> {{inf.claveservicio}}</td>
+            			    <td> {{inf.fecha|date:"Y-m-d"}} </td>
+            			    <td> {{inf.motivo}}</td>
+                            <td> {{inf.calle}}</td>
+                            <td> {{inf.numerocalle}} </td>
+                            <td> {{inf.calleproxima}}</td>
+                            <td> {{inf.sector}}</td>
+                            <td> {{inf.poblacion}}</td>
+                            <td> {% if inf.ruta != None %}
+                                 {{inf.ruta}}
+                                 {% else %}
+                                 No aplica
+                                 {% endif%}
+                            </td>
+                            <td> {% if inf.kilometroruta != None %}
+                                 {{inf.kilometroruta}}
+                                 {% else %}
+                                 No aplica
+                                 {% endif%}
+                            </td>
+                            <th> {{inf.fk_bomberocargo.nombre}}</th>
+                            <th> {{inf.fk_bomberoinforme.nombre}}</th>
+                            <th> {{inf.codigocargo}}</th>
+                            <th> {{inf.codigoinforme}}</th>
+                            <td> {% if inf.numerodepartamento != None %}
+                                 {{inf.numerodepartamento}}
+                                 {% else %}
+                                 No aplica
+                                 {% endif%}
+                            </td>
+                            <td> {% if inf.numeroblock != None %}
+                                 {{inf.numeroblock}}
+                                 {% else %}
+                                 No aplica
+                                 {% endif%}
+                            </td>
+                            <th> {{inf.resumen}}</th>
+                            <td> <a class="btn btn-default" href="{ % url 'webBomberos.views.informe1_edit' pk=inf.idevento % }"><span class="glyphicon glyphicon-pencil"></span></a> </td>
+                        </tr>
+                        {% endfor %}              
+    		</table>	 
+    	</div>
+{% endblock content %}

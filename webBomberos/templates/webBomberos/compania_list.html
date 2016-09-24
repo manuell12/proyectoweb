@@ -1,0 +1,25 @@
+{% extends 'webBomberos/base.html' %}
+
+{% block content %}
+	<h1>Compañia</h1>
+        <div class="table-responsive">
+    		<table style="width:100%">
+                <thead>
+                    <tr>
+                        <th> Nombre Compañia </th>
+                        <th> Registro Compañia </th>
+                        <th> Calle </th>
+                        <th> Numero de Calle </th>
+                        <th> Ciudad </th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td> {{compania.nombrecompania}}</td>
+                    <td> {{compania.registrocompania}}</td>
+    		        <td> {{compania.calle}}</td>
+    			    <td> {{compania.numerocalle}}</td>
+    			    <td> {{compania.ciudad}}</td>
+                </tr> 
+    		</table>	 
+    	</div>
+{% endblock content %}

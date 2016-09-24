@@ -1,0 +1,99 @@
+{% extends 'webBomberos/base.html' %}
+{% load staticfiles %}
+    {% block content %}
+        <h1 align="center">Voluntario</h1>
+        <br>
+        <form  action='editado' method="POST" class="form-horizontal">{% csrf_token %}
+            <div class="form-group">
+    			<label for="inputRut" class="col-sm-2 control-label">Rut</label>
+    			<div class="col-sm-10">
+      				<input  name="rut_vol" type="text"  value="{{voluntario.rut}}" class="form-control" id="rut">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="inputNombre" class="col-sm-2 control-label">Nombre completo</label>
+    			<div class="col-sm-10">
+      				<input name="nombre_vol" type="text" value="{{voluntario.nombre}}" class="form-control" id="inputNombre" placeholder="Nombre completo">
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputNacimiento" class="col-sm-2 control-label">Fecha de nacimiento</label>
+    			<div class="col-sm-10">
+      				<input  name="nacimiento_vol" type="" value="{{voluntario.fechanacimiento|date:"Y-m-d"}}" class="form-control" id="inputNacimiento" placeholder="Fecha de nacimiento">
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputCiudad" class="col-sm-2 control-label">Ciudad de nacimiento</label>
+    			<div class="col-sm-10">
+      				<input  name="ciudad_vol" type="text" value="{{voluntario.ciudadnacimiento}}" class="form-control" id="inputCiudad" placeholder="Ciudad de nacimiento">
+    			</div>
+  			</div> 
+  			<div class="form-group">
+  				<label for="inputSangre" class="col-sm-2 control-label">Grupo sanguineo</label>
+    			<div class="col-sm-10">
+      				<input  name="sangre_vol" type="text"  value="{{voluntario.gruposanguineo}}" class="form-control" id="inputSangre" placeholder="Grupo sanguineo">
+    			</div>
+  			</div> 
+  			<div class="form-group">
+  				<label for="inputProfesion" class="col-sm-2 control-label">Profesion</label>
+    			<div class="col-sm-10">
+      				<input  name="profesion_vol" type="text" value="{{voluntario.profesion}}" class="form-control" id="inputProfesion" placeholder="Profesion">
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputIngreso" class="col-sm-2 control-label">Fecha de ingreso</label>
+    			<div class="col-sm-10">
+      				<input  name="ingreso_vol" type=""  value="{{voluntario.fechaingreso|date:"Y-m-d"}}" class="form-control" id="inputIngreso" placeholder="Fecha de ingreso">
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputSalida" class="col-sm-2 control-label">Fecha de salida</label>
+    			<div class="col-sm-10">
+              {% if voluntario.fechasalida == None %}
+      				<input  name="salida_vol" type="" value="" class="form-control" id="inputSalida" placeholder="dd-mm-aaaa">
+              {% else %}
+              <input  name="salida_vol" type="" value="{{voluntario.fechasalida|date:"Y-m-d"}}" class="form-control" id="inputSalida" placeholder="Fecha de salida">
+              {% endif %}
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputServicioMilitar" class="col-sm-2 control-label">Servicio Militar</label>
+    			<div class="col-sm-10">
+    				{% if voluntario.serviciomilitar == 1 %}
+      					<select class="form-control" id="servicioMilitar" value="Si" name="servicio_vol">
+  							<option >Si</option>
+  							<option >No</option>
+  						</select>
+  					{% else %}
+  						<select class="form-control" id="servicioMilitar" value="No" name="servicio_vol">
+  							<option >Si</option>
+  							<option >No</option>
+  						</select>
+  					{% endif %}
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputInsignia" class="col-sm-2 control-label">Insignia</label>
+    			<div class="col-sm-10">
+    				<input name="insignia_vol" type="text" value="{{voluntario.insignia}}" class="form-control" id="inputInsignia" placeholder="Insignia">
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputCargo" class="col-sm-2 control-label">Cargo</label>
+    			<div class="col-sm-10">
+    				<input name="cargo_vol" type="text"  value="{{voluntario.cargo}}" class="form-control" id="inputCargo" placeholder="Cargo">
+    			</div>
+  			</div>
+  			<div class="form-group">
+  				<label for="inputCalificacion" class="col-sm-2 control-label">Calificacion</label>
+    			<div class="col-sm-10">
+    				<input  name="calificacion_vol" type="text" value="{{voluntario.calificacion}}" class="form-control" id="inputCalificacion" placeholder="Calificacion">
+    			</div>
+  			</div> 
+  			<div class="form-group">
+    			<div align="center" class="col-sm-offset-2 col-sm-10">
+      				<button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+    			</div>
+  			</div>
+        </form>
+    {% endblock %}
